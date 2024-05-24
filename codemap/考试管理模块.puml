@@ -1,0 +1,24 @@
+@startuml
+
+:Admin: as 管理员
+ Teacher as 老师
+ Student as 学生
+
+
+老师 --> (创建考试计划)
+
+note right of (创建考试计划)
+通过选取相应的科目试题生成试卷信息
+end note
+
+(创建考试计划) --> (参加考试)
+学生 --> (参加考试)
+
+(参加考试) --> (考试结果)
+老师 --> (考试结果)
+
+note right of (考试结果)
+老师可查看对应的考试试卷
+end note
+
+@enduml

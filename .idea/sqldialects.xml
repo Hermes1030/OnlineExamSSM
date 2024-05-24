@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/c3p0testtable.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/classinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/courseinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/examchooseinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/examhistoryinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/exampaperinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/examplaninfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/examsubjectmiddleinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/gradeinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/studentinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/subjectinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/databases_data/anonymous/db_online_ssm/teacherinfo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/db_online_ssm(无数据).sql" dialect="MySQL" />
+  </component>
+</project>

@@ -1,0 +1,57 @@
+@startuml
+
+entity 教师或管理员 {
+  - ID: integer
+  - 是否为管理员: boolean
+  - 账号信息: string
+  - 姓名: string
+}
+
+entity 学生 {
+  - ID: integer
+  - 账号信息: string
+  - 姓名: string
+}
+
+entity 班级 {
+  - ID: integer
+  - 班级名称: string
+  --
+  - 老师ID: integer
+  - 年级ID: integer
+}
+
+entity 试题 {
+  - ID: integer
+  - 试题类型: string
+  - 题目: string
+  - 科目: string
+  - 答案: string
+  - 分值: integer
+  - 难度: string
+}
+
+entity 科目 {
+  - ID: integer
+  - 科目名称: string
+  - 试卷ID: integer
+}
+entity 试卷 {
+  - ID: integer
+  - 试卷名称: string
+  - 试卷时间: integer
+  - 题目数量: integer
+  - 试卷总分: integer
+}
+
+entity 考试计划 {
+  - ID: integer
+  - 开始时间: datetime
+  - 参与班级: string
+  - 课程ID: integer
+  - 试卷ID：integer
+}
+
+
+@enduml
+

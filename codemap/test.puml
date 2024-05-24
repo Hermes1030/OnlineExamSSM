@@ -1,0 +1,33 @@
+@startuml
+class 管理员 {
+    + createTeacher()
+    + createStudent()
+}
+
+class 老师 {
+    - id : int
+    - name : string
+    + setId(int id)
+    + setName(string name)
+    + getId() : int
+    + getName() : string
+    + editStudentInfo()
+}
+
+class 学生 {
+    - id : int
+    - name : string
+    - CourseId : int
+    + setId(int id)
+    + setName(string name)
+    + getId() : int
+    + getName() : string
+    + getCourseId() : int
+}
+
+管理员 --> 老师 : creates
+管理员 --> 学生 : creates
+老师 --> 学生 : edits
+
+
+@enduml

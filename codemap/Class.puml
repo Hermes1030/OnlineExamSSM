@@ -1,0 +1,78 @@
+@startuml
+
+interface ClassInfoMapper {
+    + getClasses(classInfo: ClassInfo): List<ClassInfo>
+    + isAddClass(classInfo: ClassInfo): int
+    + isDelClass(classId: int): int
+    + getClassById(classId: int): ClassInfo
+    + getClassByTeacherId(teacherId: int): ClassInfo
+    + isUpdateClass(classInfo: ClassInfo): int
+    + getClassByGradeId(gradeId: int): List<ClassInfo>
+    + getStudentCountForClass(gradeId: Integer): Map<String, Object>
+}
+
+note right of ClassInfoMapper
+    班级信息代理接口。
+end note
+
+class ClassInfoServiceImpl {
+    - classInfoMapper: ClassInfoMapper
+    + getClasses(classInfo: ClassInfo): List<ClassInfo>
+    + isAddClass(classInfo: ClassInfo): int
+    + isDelClass(classId: int): int
+    + getClassById(classId: int): ClassInfo
+    + isUpdateClass(classInfo: ClassInfo): int
+    + getClassByGradeId(gradeId: int): List<ClassInfo>
+    + getStudentCountForClass(gradeId: Integer): Map<String, Object>
+    + getClassByTeacherId(teacherId: int): ClassInfo
+}
+
+note right of ClassInfoServiceImpl
+    班级信息 Service 实现类
+end note
+
+
+class ClassInfoHandler {
+    - logger: Logger
+    - classInfoService: ClassInfoService
+    - gradeInfoService: GradeInfoService
+    - teacherInfoService: TeacherInfoService
+    - teacher: TeacherInfo
+    - classInfo: ClassInfo
+    - gson: Gson
+
+    + ClassInfoHandler()
+    + getClasses(gradeId: Integer, className: String, classId: Integer): ModelAndView
+    + preAddClass(): ModelAndView
+    + isAddClass(classInfo: ClassInfo, request: HttpServletRequest): String
+    + isDelClass(classId: Integer, request: HttpServletRequest): String
+    + preUpdateClass(classId: Integer): ModelAndView
+    + isUpdateClass(classInfo: ClassInfo, request: HttpServletRequest, lastTeacherId: Integer): String
+    + getClassesByGradeId(gradeId: Integer, response: HttpServletResponse): void
+    + isChangeTeacherWork(status: int, teacherId: Integer): String
+    + getStudentCountForClass(gradeId: Integer, response: HttpServletResponse): void
+    + preStudentCount(): ModelAndView
+}
+
+class ClassInfo {
+    - classId: Integer
+    - className: String
+    - grade: GradeInfo
+    - teacher: TeacherInfo
+
+    + getClassId(): Integer
+    + setClassId(classId: Integer): void
+    + getClassName(): String
+    + setClassName(className: String): void
+    + getGrade(): GradeInfo
+    + setGrade(grade: GradeInfo): void
+    + getTeacher(): TeacherInfo
+    + setTeacher(teacher: TeacherInfo): void
+    + toString(): String
+}
+
+ClassInfoMapper ..|> ClassInfoServiceImpl : 接口实现
+
+
+
+@enduml

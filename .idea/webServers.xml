@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="bf1b1040-f98e-49f6-a0ea-982e2eaf990c" name="MySFTP" url="http://120.27.202.199:8080">
+        <fileTransfer rootFolder="/usr/local/tomcat9/webapps" accessType="SFTP" host="120.27.202.199" port="22" sshConfigId="86f4d77a-99ea-4ef8-a252-13d45568acee" sshConfig="root@120.27.202.199:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" isUseSudo="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

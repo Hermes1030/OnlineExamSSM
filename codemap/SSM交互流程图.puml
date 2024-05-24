@@ -1,0 +1,20 @@
+@startuml
+
+actor 用户
+participant "控制器 (Spring MVC)" as 控制器
+participant "服务 (Spring)" as 服务
+participant "映射器 (MyBatis)" as 映射器
+database MySQL
+participant "JSP 页面" as JSP页面
+
+用户 -> 控制器: 请求
+控制器 -> 服务: 调用
+服务 -> 映射器: 查询
+映射器 -> MySQL: 执行 SQL
+MySQL --> 映射器: 结果
+映射器 --> 服务: 结果
+服务 --> 控制器: 结果
+控制器 --> JSP页面: 结果
+JSP页面 --> 用户: 响应
+
+@enduml

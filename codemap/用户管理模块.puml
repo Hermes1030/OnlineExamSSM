@@ -1,0 +1,19 @@
+@startuml
+
+title 用户管理模块
+actor Admin as "管理员"
+actor Teacher as "老师"
+actor Student as "学生"
+
+Admin --> 添加管理员
+Admin --> Teacher: 创建老师
+Admin --> Student: 创建学生
+
+Teacher --> Student: 编辑学生信息
+
+Student --> 确认班级信息
+
+
+
+
+@enduml

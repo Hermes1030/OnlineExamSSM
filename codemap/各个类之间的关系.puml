@@ -1,0 +1,310 @@
+@startuml
+
+class ClassInfo {
+    - classId: Integer
+    - className: String
+    - grade: GradeInfo
+    - teacher: TeacherInfo
+    + getClassId(): Integer
+    + setClassId(Integer): void
+    + getClassName(): String
+    + setClassName(String): void
+    + getGrade(): GradeInfo
+    + setGrade(GradeInfo): void
+    + getTeacher(): TeacherInfo
+    + setTeacher(TeacherInfo): void
+}
+
+class GradeInfo {
+    - gradeId: Integer
+    - gradeName: String
+    + getGradeId(): Integer
+    + setGradeId(Integer): void
+    + getGradeName(): String
+    + setGradeName(String): void
+}
+
+class CourseInfo {
+    - courseId: Integer
+    - courseName: String
+    - division: Integer
+    - grade: GradeInfo
+    + getCourseId(): Integer
+    + setCourseId(Integer): void
+    + getCourseName(): String
+    + setCourseName(String): void
+    + getDivision(): Integer
+    + setDivision(Integer): void
+    + getGrade(): GradeInfo
+    + setGrade(GradeInfo): void
+}
+
+
+
+
+class TeacherInfo {
+    - teacherId: Integer
+    - teacherName: String
+    - teacherAccount: String
+    - teacherPwd: String
+    - adminPower: int
+    - isWork: Integer
+    - classInfo: ClassInfo
+
+    + getTeacherId(): Integer
+    + setTeacherId(teacherId: Integer): void
+    + getTeacherName(): String
+    + setTeacherName(teacherName: String): void
+    + getTeacherAccount(): String
+    + setTeacherAccount(teacherAccount: String): void
+    + getTeacherPwd(): String
+    + setTeacherPwd(teacherPwd: String): void
+    + getAdminPower(): int
+    + setAdminPower(adminPower: int): void
+    + getIsWork(): Integer
+    + setIsWork(isWork: Integer): void
+    + getClassInfo(): ClassInfo
+    + setClassInfo(classInfo: ClassInfo): void
+}
+
+class StudentInfo {
+    - studentId: Integer
+    - studentName: String
+    - studentAccount: String
+    - studentPwd: String
+    - classInfo: ClassInfo
+    - grade: GradeInfo
+
+    + getStudentId(): Integer
+    + setStudentId(studentId: Integer): void
+    + getStudentName(): String
+    + setStudentName(studentName: String): void
+    + getStudentAccount(): String
+    + setStudentAccount(studentAccount: String): void
+    + getStudentPwd(): String
+    + setStudentPwd(studentPwd: String): void
+    + getClassInfo(): ClassInfo
+    + setClassInfo(classInfo: ClassInfo): void
+    + getGrade(): GradeInfo
+    + setGrade(grade: GradeInfo): void
+}
+
+'class Exam {
+'    - examId: int
+'    - examName: String
+'    - questions: List<String>
+'}
+
+class ExamChooseInfo {
+    - chooseId: Integer
+    - student: StudentInfo
+    - examPaper: ExamPaperInfo
+    - subject: SubjectInfo
+    - chooseResult: String
+    + getChooseId(): Integer
+    + setChooseId(Integer): void
+    + getStudent(): StudentInfo
+    + setStudent(StudentInfo): void
+    + getExamPaper(): ExamPaperInfo
+    + setExamPaper(ExamPaperInfo): void
+    + getSubject(): SubjectInfo
+    + setSubject(SubjectInfo): void
+    + getChooseResult(): String
+    + setChooseResult(String): void
+}
+
+class ExamPaperInfo {
+    - examPaperId: Integer
+    - examPaperName: String
+    - subjectNum: int
+    - examPaperTime: int
+    - examPaperScore: int
+    - division: int
+    - examPaperEasy: int
+    - grade: GradeInfo
+    + getExamPaperId(): Integer
+    + setExamPaperId(Integer): void
+    + getExamPaperName(): String
+    + setExamPaperName(String): void
+    + getSubjectNum(): int
+    + setSubjectNum(int): void
+    + getExamPaperTime(): int
+    + setExamPaperTime(int): void
+    + getExamPaperScore(): int
+    + setExamPaperScore(int): void
+    + getDivision(): int
+    + setDivision(int): void
+    + getExamPaperEasy(): int
+    + setExamPaperEasy(int): void
+    + getGrade(): GradeInfo
+    + setGrade(GradeInfo): void
+}
+
+class SubjectInfo {
+    - subjectId: Integer
+    - subjectName: String
+    - optionA: String
+    - optionB: String
+    - optionC: String
+    - optionD: String
+    - rightResult: String
+    - subjectScore: int
+    - subjectType: int
+    - subjectEasy: int
+    - division: int
+    - course: CourseInfo
+    - grade: GradeInfo
+    + getSubjectId(): Integer
+    + setSubjectId(Integer): void
+    + getSubjectName(): String
+    + setSubjectName(String): void
+    + getOptionA(): String
+    + setOptionA(String): void
+    + getOptionB(): String
+    + setOptionB(String): void
+    + getOptionC(): String
+    + setOptionC(String): void
+    + getOptionD(): String
+    + setOptionD(String): void
+    + getRightResult(): String
+    + setRightResult(String): void
+    + getSubjectScore(): int
+    + setSubjectScore(int): void
+    + getSubjectType(): int
+    + setSubjectType(int): void
+    + getSubjectEasy(): int
+    + setSubjectEasy(int): void
+    + getDivision(): int
+    + setDivision(int): void
+    + getCourse(): CourseInfo
+    + setCourse(CourseInfo): void
+    + getGrade(): GradeInfo
+    + setGrade(GradeInfo): void
+}
+
+class ExamSubjectMiddleInfo {
+    - esmId: Integer
+    - examPaper: ExamPaperInfo
+    - subject: SubjectInfo
+    + getEsmId(): Integer
+    + setEsmId(Integer): void
+    + getExamPaper(): ExamPaperInfo
+    + setExamPaper(ExamPaperInfo): void
+    + getSubject(): SubjectInfo
+    + setSubject(SubjectInfo): void
+}
+
+class ExamHistoryInfo {
+    - historyId: Integer
+    - student: StudentInfo
+    - examPaper: ExamPaperInfo
+    - examScore: int
+    + getHistoryId(): Integer
+    + setHistoryId(Integer): void
+    + getStudent(): StudentInfo
+    + setStudent(StudentInfo): void
+    + getExamPaper(): ExamPaperInfo
+    + setExamPaper(ExamPaperInfo): void
+    + getExamScore(): int
+    + setExamScore(int): void
+}
+
+class ExamHistoryPaper {
+    - examScore: int
+    - beginTime: String
+    - examPaperId: Integer
+    - examPaperName: String
+    - subjectNum: int
+    - examPaperScore: int
+    + getExamScore(): int
+    + setExamScore(int): void
+    + getBeginTime(): String
+    + setBeginTime(String): void
+    + getExamPaperId(): Integer
+    + setExamPaperId(Integer): void
+    + getExamPaperName(): String
+    + setExamPaperName(String): void
+    + getSubjectNum(): int
+    + setSubjectNum(int): void
+    + getExamPaperScore(): int
+    + setExamPaperScore(int): void
+    + toString(): String
+}
+
+class ExamPlanInfo {
+    - examPlanId: Integer
+    - beginTime: String
+    - course: CourseInfo
+    - clazz: ClassInfo
+    - examPaper: ExamPaperInfo
+    + getExamPlanId(): Integer
+    + setExamPlanId(Integer): void
+    + getCourse(): CourseInfo
+    + setCourse(CourseInfo): void
+    + getClazz(): ClassInfo
+    + setClazz(ClassInfo): void
+    + getExamPaper(): ExamPaperInfo
+    + setExamPaper(ExamPaperInfo): void
+    + getBeginTime(): String
+    + setBeginTime(String): void
+    + toString(): String
+}
+
+class StudentExamInfo {
+    - studentId: Integer
+    - studentName: String
+    - examSum: Integer
+    - avgScore: Integer
+    - examScore: Integer
+    - examPaperName: String
+    - examPaperScore: Integer
+    + getStudentId(): Integer
+    + setStudentId(Integer): void
+    + getStudentName(): String
+    + setStudentName(String): void
+    + getExamSum(): Integer
+    + setExamSum(Integer): void
+    + getAvgScore(): Integer
+    + setAvgScore(Integer): void
+    + getExamScore(): Integer
+    + setExamScore(Integer): void
+    + getExamPaperName(): String
+    + setExamPaperName(String): void
+    + getExamPaperScore(): Integer
+    + setExamPaperScore(Integer): void
+    + toString(): String
+}
+
+
+ClassInfo -- GradeInfo : has-a
+ClassInfo -- TeacherInfo : has-a
+CourseInfo -- GradeInfo : has-a
+
+ExamChooseInfo -- StudentInfo : has-a
+ExamChooseInfo -- ExamPaperInfo : has-a
+ExamChooseInfo -- SubjectInfo : has-a
+
+ExamPaperInfo -- GradeInfo : has-a
+
+SubjectInfo -- CourseInfo : has-a
+SubjectInfo -- GradeInfo : has-a
+
+ExamSubjectMiddleInfo -- ExamPaperInfo : has-a
+ExamSubjectMiddleInfo -- SubjectInfo : has-a
+
+ExamHistoryInfo -- StudentInfo : has-a
+ExamHistoryInfo -- ExamPaperInfo : has-a
+
+ExamHistoryPaper -- ExamPaperInfo : has-a
+
+ExamPlanInfo -- CourseInfo : has-a
+ExamPlanInfo -- ClassInfo : has-a
+ExamPlanInfo -- ExamPaperInfo : has-a
+
+
+TeacherInfo --> ExamPaperInfo: creates
+TeacherInfo --> ExamPaperInfo: grades
+StudentInfo --> ExamPaperInfo: takes
+StudentInfo --> ExamPaperInfo: views
+
+@enduml

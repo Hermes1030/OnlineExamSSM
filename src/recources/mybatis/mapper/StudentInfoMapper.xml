@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.taohan.online.exam.dao.StudentInfoMapper">
+	
+	<resultMap type="com.taohan.online.exam.po.StudentInfo" id="queryStudent">
+		<id column="studentId" property="studentId"/>
+		<result column="studentName" property="studentName"/>
+		<result column="studentAccount" property="studentAccount"/>
+		<result column="studentPwd" property="studentPwd"/>
+		<!-- 班级 -->
+		<association property="classInfo" javaType="com.taohan.online.exam.po.ClassInfo">
+			<id column="classId" property="classId"/>
+			<result column="className" property="className"/>
+		</association>
+		<!-- 年级 -->
+		<association property="grade" javaType="com.taohan.online.exam.po.GradeInfo">
+			<id column="gradeId" property="gradeId"/>
+			<result column="gradeName" property="gradeName"/>
+		</association>
+	</resultMap>
+	
+	<parameterMap type="java.util.Map" id="getStudentParameterMap">
+		<parameter property="student" resultMap="queryStudent"/>
+		<parameter property="startIndex" resultMap="queryStudent"/>
+		<parameter property="pageShow" resultMap="queryStudent"/>
+	</parameterMap>
+	
+	<!-- 获取学生集合 -->
+	<!-- 根据条件查询学生信息及其班级和年级信息 -->
+	<select id="getStudents" parameterMap="getStudentParameterMap" resultMap="queryStudent">
+	    <!-- 联合查询学生、班级和年级信息 -->
+	    SELECT a.*,b.className, c.gradeName FROM StudentInfo a
+	    INNER JOIN ClassInfo b ON a.classId=b.classId
+	    INNER JOIN GradeInfo c ON b.gradeId=c.gradeId
+	    <where>
+	        <!-- 如果有指定学生ID，则筛选出该学生 -->
+	        <if test="student.studentId != null">
+	            studentId=#{student.studentId}
+
+	        </if>
+	        <!-- 如果有指定班级信息，则根据班级ID筛选 -->
+	        <if test="student.classInfo != null">
+	            <if test="student.classInfo.classId != null">
+	                b.classId=#{student.classInfo.classId}
+	            </if>
+	        </if>
+	        <!-- 如果有指定年级信息，则根据年级ID筛选 -->
+	        <if test="student.grade != null">
+	            <if test="student.grade.gradeId != null">
+	                c.gradeId=#{student.grade.gradeId}
+	            </if>
+	        </if>
+	    </where>
+	    <!-- 如果指定了分页信息，则添加分页限制 -->
+	    <if test="startIndex != null and pageShow != null">
+	        LIMIT #{startIndex}, #{pageShow}
+	    </if>
+	</select>
+	
+	<select id="getStudentById" parameterType="int" resultMap="queryStudent">
+		SELECT a.*,b.className,c.gradeId,c.gradeName FROM StudentInfo a
+		INNER JOIN ClassInfo b ON a.classId=b.classId
+		INNER JOIN GradeInfo c ON b.gradeId=c.gradeId
+		WHERE a.studentId=#{studentId}
+	</select>
+	
+	<update id="isUpdateStudent" parameterType="com.taohan.online.exam.po.StudentInfo">
+		UPDATE StudentInfo SET
+		studentName=#{studentName}, studentAccount=#{studentAccount}, studentPwd=#{studentPwd}, classId=#{classInfo.classId}
+		WHERE studentId=#{studentId}
+	</update>
+	
+	<delete id="isDelStudent" parameterType="int">
+		DELETE FROM StudentInfo WHERE studentId=#{studentId}
+	</delete>
+	
+	<insert id="isAddStudent" parameterType="com.taohan.online.exam.po.StudentInfo">
+		INSERT INTO StudentInfo VALUES(NULL, #{studentName}, #{studentAccount}, #{studentPwd}, #{classInfo.classId})
+	</insert>
+	
+	<select id="getStudentTotal" resultType="int" parameterType="int">
+		SELECT COUNT(studentId) FROM StudentInfo
+	</select>
+
+	<select id="getStudentTotalByClassId" parameterType="int" resultType="int">
+		SELECT COUNT(studentId) FROM StudentInfo WHERE classId=#{classId}
+	</select>
+	
+	<select id="getStudentByAccountAndPwd" parameterType="java.lang.String" resultMap="queryStudent">
+		SELECT a.*,b.className,c.gradeId,c.gradeName FROM StudentInfo a
+		INNER JOIN ClassInfo b ON a.classId=b.classId
+		INNER JOIN GradeInfo c ON b.gradeId=c.gradeId
+		WHERE studentAccount=#{studentAccount}
+	</select>
+	
+	<!-- 学生重置密码 -->
+	<update id="isResetPwdWithStu" parameterType="com.taohan.online.exam.po.StudentInfo">
+		UPDATE StudentInfo SET
+		studentPwd=#{studentPwd}
+		WHERE studentId=#{studentId}
+	</update>
+	
+	<!-- 获取指定班级下的所有学生 -->
+	<select id="getStudentsByClassId" parameterType="int" resultType="com.taohan.online.exam.po.StudentInfo">
+		SELECT studentId,studentName FROM StudentInfo WHERE classId=#{classId}
+	</select>
+	
+</mapper>

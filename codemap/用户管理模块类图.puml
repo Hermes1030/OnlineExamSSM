@@ -1,0 +1,32 @@
+@startuml
+
+class Admin {
+    - teacher: TeacherInfoService
+    - student: StudentInfoService
+}
+
+class Teacher {
+    + teacherLogin(String, HttpServletRequest): String
+    + UpdateOrAddTeacher(Integer, Integer, String, String, String, Integer): String
+    + DelTeacher(Integer): String
+}
+
+class Student {
+    - student: StudentInfo
+    + isUpdateOrAddCourse(Integer, Integer, String, String, String, Integer): String
+    + isDelTeacher(Integer): String
+    + preAddStudent(): ModelAndView
+    + studentLogin(StudentInfo, HttpServletRequest): ModelAndView
+    + studentClearLogin(HttpSession): String
+    + studentRegister(String, String, String, Integer, HttpServletResponse): void
+    + selfInfo(Integer): ModelAndView
+    + isResetPwd(String, Integer, HttpServletResponse): void
+}
+
+Student --> Student: studentInfoService
+
+Admin --> Teacher: 作用于老师类
+Admin --> Student: 作用于学生类
+Teacher --> Teacher: 作用于老师类
+
+@enduml

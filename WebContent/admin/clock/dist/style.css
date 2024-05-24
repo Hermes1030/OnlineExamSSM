@@ -1,0 +1,20 @@
+body {
+  font-family: 'liquid_crystalregular', sans-serif;
+  user-select: none;
+  user-drag: none;
+}
+
+.clock {
+  font-size: 18px;
+  height: 30px;
+  width: 89.2%;
+  line-height: 35px;
+  margin: 9px 0px 16px 60.9px;
+  padding: 0px 20px;
+  background: #EEE;
+  color: #E53;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 0 2px #222;
+  text-shadow: 0 0 1px #fff;
+}
