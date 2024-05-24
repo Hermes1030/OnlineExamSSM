@@ -1,2 +1,6 @@
 # Project exclude paths
 /build/classes/
+
+# IDEA
+*.iml
+.idea/
