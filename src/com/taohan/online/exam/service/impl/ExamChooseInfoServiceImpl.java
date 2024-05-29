@@ -39,8 +39,7 @@ public class ExamChooseInfoServiceImpl implements ExamChooseInfoService {
 
 	public List<ExamChooseInfo> getChooseInfoWithSumScore(
 			Map<String, Object> map) {
-		List<ExamChooseInfo> list = examChooseInfoMapper.getChooseInfoWithSumScore(map);
-		return list;
+		 return examChooseInfoMapper.getChooseInfoWithSumScore(map);
 	}
 
 	public List<ExamChooseInfo> getChooseInfoWithExamSubject(

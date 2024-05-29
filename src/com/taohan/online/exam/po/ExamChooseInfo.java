@@ -25,9 +25,6 @@ public class ExamChooseInfo {
 		return chooseId;
 	}
 
-	public void setChooseId(Integer chooseId) {
-		this.chooseId = chooseId;
-	}
 
 	public StudentInfo getStudent() {
 		return student;
