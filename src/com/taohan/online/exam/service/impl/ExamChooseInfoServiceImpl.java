@@ -14,10 +14,6 @@ import com.taohan.online.exam.service.ExamChooseInfoService;
   *
   * <p>Title: ExamChooseInfoServiceImpl</p>
   * <p>Description: </p>
-  * @author: taohan
-  * @date: 2018-8-25
-  * @time: 上午10:35:03
-  * @version: 1.0
   */
 
 @Service
@@ -43,7 +39,8 @@ public class ExamChooseInfoServiceImpl implements ExamChooseInfoService {
 
 	public List<ExamChooseInfo> getChooseInfoWithSumScore(
 			Map<String, Object> map) {
-		return examChooseInfoMapper.getChooseInfoWithSumScore(map);
+		List<ExamChooseInfo> list = examChooseInfoMapper.getChooseInfoWithSumScore(map);
+		return list;
 	}
 
 	public List<ExamChooseInfo> getChooseInfoWithExamSubject(

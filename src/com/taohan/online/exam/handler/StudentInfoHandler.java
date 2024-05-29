@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.taohan.online.exam.test.test.getSimilarityRatio;
+
 /**
  * <p>Title: StudentInfoHandler</p>
  * <p>Description: </p>
@@ -110,7 +112,7 @@ public class StudentInfoHandler {
         if (isAdmin != 1) {
 //            studentTotal = students.size();
             studentTotal = studentInfoService.getStudentTotalByClassId(classId);
-        }else {
+        } else {
             studentTotal = studentInfoService.getStudentTotal();
         }
         //int studentTotal = students.size();
@@ -334,6 +336,7 @@ public class StudentInfoHandler {
 
     /**
      * 预注册
+     *
      * @return
      */
     @RequestMapping("/preStudentReg")
@@ -400,6 +403,7 @@ public class StudentInfoHandler {
             choosedMap.put("studentId", studentId);
             choosedMap.put("examPaperId", examPaperId);
             List<ExamChooseInfo> chooses = examChooseInfoService.getChooseInfoWithSumScore(choosedMap);
+
             if (chooses == null || chooses.size() == 0) {
                 model.addObject("chooses", null);
             } else {
@@ -474,11 +478,32 @@ public class StudentInfoHandler {
             SubjectInfo subject = choose.getSubject();
             String chooseResult = choose.getChooseResult();
             String rightResult = subject.getRightResult();
-            if (chooseResult.equals(rightResult)) {    // 答案正确
-                sumScore += subject.getSubjectScore();
-                logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 选择正确答案 " + chooseResult + " 当前总分 " + sumScore);
-            } else {
-                logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 答案选择错误 " + chooseResult + " 正确答案为 " + rightResult + " 当前总分 " + sumScore);
+//            // 判断选择题和多选题的正确答案
+            if (subject.getSubjectType() == 1 || subject.getSubjectType() == 0) {
+                if (chooseResult.equals(rightResult)) {
+                    sumScore += subject.getSubjectScore();
+                    logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 选择正确答案 " + chooseResult + " 当前总分 " + sumScore);
+                } else {
+                    logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 答案选择错误 " + chooseResult + " 正确答案为 " + rightResult + " 当前总分 " + sumScore);
+                }
+            }
+//            if (chooseResult.equals(rightResult)) {    // 答案正确
+//                sumScore += subject.getSubjectScore();
+//                logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 选择正确答案 " + chooseResult + " 当前总分 " + sumScore);
+//            } else {
+//                logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 答案选择错误 " + chooseResult + " 正确答案为 " + rightResult + " 当前总分 " + sumScore);
+//            }
+            //判断简答题的正确答案
+            //根据获取的答案和正确答案的相似度，计算出分数
+            if (subject.getSubjectType() == 2) {
+                int socore = (int) getSimilarityRatio(chooseResult, rightResult);
+                logger.info("获得简答题的答案相关性："+socore);
+                if (socore > 50) {
+                    sumScore = sumScore + (int)(subject.getSubjectScore() * (socore * 0.01));
+                    logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 简答正确答案 " + chooseResult + " 当前总分 " + sumScore);
+                } else {
+                    logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 简答答案错误 " + chooseResult + " 正确答案为 " + rightResult + " 当前总分 " + sumScore);
+                }
             }
         }
         // 检查是否已存在考试记录，不存在则添加到历史记录

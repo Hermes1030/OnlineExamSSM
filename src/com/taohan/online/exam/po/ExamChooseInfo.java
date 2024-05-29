@@ -18,6 +18,8 @@ public class ExamChooseInfo {
 	private ExamPaperInfo examPaper;
 	private SubjectInfo subject;
 	private String chooseResult;
+	private Integer subjectType;
+
 
 	public Integer getChooseId() {
 		return chooseId;
@@ -59,11 +61,36 @@ public class ExamChooseInfo {
 		this.chooseResult = chooseResult;
 	}
 
-	@Override
-	public String toString() {
-		return "ExamChooseInfo [chooseId=" + chooseId + ", student=" + student
-				+ ", examPaper=" + examPaper + ", subject=" + subject
-				+ ", chooseResult=" + chooseResult + "]";
+	public Integer getSubjectType() {
+		return subjectType;
 	}
 
+	public void setSubjectType(Integer subjectType) {
+		this.subjectType = subjectType;
+	}
+
+
+	public ExamChooseInfo(Integer chooseId, StudentInfo student, ExamPaperInfo examPaper, SubjectInfo subject, String chooseResult, Integer subjectType) {
+		this.chooseId = chooseId;
+		this.student = student;
+		this.examPaper = examPaper;
+		this.subject = subject;
+		this.chooseResult = chooseResult;
+		this.subjectType = subjectType;
+	}
+
+	public ExamChooseInfo() {
+	}
+
+	@Override
+	public String toString() {
+		return "ExamChooseInfo{" +
+				"chooseId=" + chooseId +
+				", student=" + student +
+				", examPaper=" + examPaper +
+				", subject=" + subject +
+				", chooseResult='" + chooseResult + '\'' +
+				", subjectType=" + subjectType +
+				'}';
+	}
 }

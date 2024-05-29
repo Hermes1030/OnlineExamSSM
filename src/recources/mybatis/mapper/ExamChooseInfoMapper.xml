@@ -34,6 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<id column="subjectId" property="subjectId"/>
 			<result column="rightResult" property="rightResult"/>
 			<result column="subjectScore" property="subjectScore"/>
+			<result column="subjectType" property="subjectType"/>
 		</association>
 	</resultMap>
 	
@@ -46,7 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		a.chooseResult,
 		a.subjectId,
 		b.rightResult,
-		b.subjectScore
+		b.subjectScore,
+		b.subjectType as subjectType
 		FROM ExamChooseInfo a 
 		INNER JOIN subjectInfo b ON a.subjectId=b.subjectId
 		WHERE studentId=#{studentId} AND examPaperId=#{examPaperId};

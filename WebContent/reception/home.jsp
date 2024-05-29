@@ -24,7 +24,7 @@
     padding-bottom: 0px;
     margin-bottom: 0px;">
     <%--	首页背景 --%>
-    <h1>My <span class="type-animation animating"> Examination</span> system</h1>
+    <h1>My <span class="type-animation animating"> Examination</span> System</h1>
     <script src="index_bg/script-f.js"></script>
 </div>
 <%--	底部图片--%>
