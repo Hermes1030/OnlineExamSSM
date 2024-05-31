@@ -487,12 +487,6 @@ public class StudentInfoHandler {
                     logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 答案选择错误 " + chooseResult + " 正确答案为 " + rightResult + " 当前总分 " + sumScore);
                 }
             }
-//            if (chooseResult.equals(rightResult)) {    // 答案正确
-//                sumScore += subject.getSubjectScore();
-//                logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 选择正确答案 " + chooseResult + " 当前总分 " + sumScore);
-//            } else {
-//                logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 答案选择错误 " + chooseResult + " 正确答案为 " + rightResult + " 当前总分 " + sumScore);
-//            }
             //判断简答题的正确答案
             //根据获取的答案和正确答案的相似度，计算出分数
             if (subject.getSubjectType() == 2) {
@@ -505,6 +499,12 @@ public class StudentInfoHandler {
                     logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 简答答案错误 " + chooseResult + " 正确答案为 " + rightResult + " 当前总分 " + sumScore);
                 }
             }
+//            if (chooseResult.equals(rightResult)) {    // 答案正确
+//                sumScore += subject.getSubjectScore();
+//                logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 选择正确答案 " + chooseResult + " 当前总分 " + sumScore);
+//            } else {
+//                logger.info("学生 " + studentId + " 第 " + subject.getSubjectId() + " 答案选择错误 " + chooseResult + " 正确答案为 " + rightResult + " 当前总分 " + sumScore);
+//            }
         }
         // 检查是否已存在考试记录，不存在则添加到历史记录
         int count = examHistoryPaperService.getHistoryInfoWithIds(map);
