@@ -2,7 +2,7 @@
 
 **技术栈：** SSM+JSP+Tomcat+MySQL
 
-**Demo：**[http://120.27.202.199:8080/OnlineExamSSM](http://120.27.202.199:8080/OnlineExamSSM)
+**Demo：**[~http://120.27.202.199:8080/OnlineExamSSM~](http://120.27.202.199:8080/OnlineExamSSM)
 
 ![1716560610609.png](Re_images/index.png)
 
